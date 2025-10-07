@@ -61,9 +61,9 @@
 
 **Restrictii:**
 
-- ID: doar litere si incepe cu litera mica mereu, lungime maxim 20;
+- ID: doar litere si incepe cu litera mica mereu, lungime maxim 250;
 - Constante: intregi, maxim 9 cifre si reale maxim 2 zecimale;
-  Regex pentru ID: `[a-z][a-zA-Z0-9]{0,19}`
+  Regex pentru ID: `[a-z][a-zA-Z0-9]{0,250}`
   Regex pentru intregi: `[+-]?(0|[1-9][0-9]{0-8})`
   Regex pentru reale: `[+-]?(0|[1-9][0-9]{0-8})(\.[0-9]{1,2})`
 
