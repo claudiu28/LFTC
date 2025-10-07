@@ -107,28 +107,45 @@
 | "             | 33  |
 
 **BNF**
+
 ```text
 <program> ::= <import> <start_program> <declarari> <lista_instr> <end_program>
+
 <import> ::= 'Import'
 <start_program> ::= 'Start_Program' '{'
 <end_program> ::= 'End_Program' ';' '}'
-<declarari> ::= <declarare> | <declarare> ',' <declarari> 
+
+<declarari> ::= <declarare> | <declarare> <declarari> 
 <declarare> ::= <tip> <lista_ID> ';'
+<lista_ID> ::= ID | ID ',' <lista_ID> 
 <tip> ::= 'Intreg' | 'Real' | 'Structura'
-<lista_ID> ::= ID | ID ',' <lista_ID>
-<lista_instr> ::= <instr> <lista_instr> | ε
+
+<lista_instr> ::= <instr> | <instr> <lista_instr>  
 <instr> ::= <atribuire> ';' | <citeste> ';' | <scrie> ';' | <daca> | <cat_timp>
-<atribuire> ::= ID 'Atribuim' <exp>
+<atribuire> ::= ID 'atribuim' <exp>
 <citeste> ::= 'Citeste' <lista_id>
-<scrie> ::= 'Scrie' <exp> | 'Scrie' STRING
-<daca> ::= 'Daca' '(' <exp> ')' '{  
-<lista_instr> '}' <altfel>
-<altfel> ::= 'Altfel' '{' <lista_instr> '}' | ε
-<cat_timp> ::= 'CatTimp' '(' <exp> ')' '{'
-<lista_instr> '}'
-<exp> ::= <exp> 'Si' <exp1> | <exp> '
-<Sau' <exp1> | <exp1>
-<exp1> ::= <exp1> ('==' | '!=' | '<' | '<
+<scrie> ::= 'Scrie' <lista_id> 
+<daca> ::= 'Daca' '(' <exp> ')' '{'  <lista_instr> '}' | 'Daca' '(' <exp> ')' '{'  <lista_instr> '}' <altfel>
+<altfel> ::= 'Altfel' '{' <lista_instr> '}'
+<cat_timp> ::= 'CatTimp' '(' <exp> ')' '{' <lista_instr> '}'
+
+<exp> ::= <termen> | <termen> <termeni> 
+<termen> ::= <factor> <factori> | <factor>
+<factor> ::= ID | CONST | '(' <exp> ')'
+<termeni> ::= <relational_logic> <termen> <termeni> | <relational_logic> <termen>
+<factori> ::= <aritmetic> <factor> <factori> | <aritmetic> <factor>
+<relational_logic> ::= 'Egal' | '!=' | '<' | '<=' | '>' | '>=' | 'si' | 'sau'
+<aritmetic> :: = '+' | '-' | '*' | '/' 
+
+ID ::= <litera_mica> <continuare> | <litera_mica>
+<continuare> ::= <caractere> <continuare> | <caractere>
+<caractere> ::=  <litera_mica> | <litera_mare> | <cifra>
+<litera_mica> ::= 'a' | ... | 'z'
+<litera_mare> ::= 'A' | ... | 'Z'
+<cifra> ::= '0' | ... | '9'
+
+CONST ::= <cifra> <cifre> | <cifra> | <cifra> <cifre> '.' <cifra> <cifra>
+<cifre> ::= <cifra> <cifre> | <cifra>
 ```
 
 **2 se cer textele sursa a 3 mini-programe**
@@ -192,6 +209,7 @@
 
 - Unul dintre programe contine doua erori care sunt in acelasi timp
   erori in limbajul original (pentru care MLP defineste un subset)
+
 ```text
     Start_Program {
       Scrie "N = ";
@@ -204,12 +222,16 @@
       End_Program;
     }
 ```
+
 1. tip de data double nu este definit in MLP
-2. lipseste Import fara este programul nu este valid (practic in c++ nu am avea nici iostream si std si nu ar rula programul)
+2. lipseste Import fara este programul nu este valid (practic in c++ nu am avea nici iostream si std si nu ar rula
+   programul)
 
 
-- Al doilea program contine doua erori conform MLP, dar care nu sunt erori in limbajul original. Se cere ca acesta sa fie compilat si
-  executat in limbajul original ales. 
+- Al doilea program contine doua erori conform MLP, dar care nu sunt erori in limbajul original. Se cere ca acesta sa
+  fie compilat si
+  executat in limbajul original ales.
+
 ```text
    Import
    Start_Program {
@@ -223,5 +245,6 @@
    End_Program;
    }
 ```
+
 1. tipul de data double nu este definit in MLP, dar este valid in C++
 2. constanta de tip real are mai mult de 2 zecimale, dar este valid in C++
