@@ -5,7 +5,7 @@
 **Tipuri de date:**
 
 | MLP       | C++    |
-|-----------|--------|
+| --------- | ------ |
 | Intreg    | int    |
 | Real      | float  |
 | Structura | struct |
@@ -13,21 +13,21 @@
 **Instrucțiuni:**
 
 | MLP      | C++   |
-|----------|-------|
+| -------- | ----- |
 | atribuim | =     |
-| Citeste  | cin   | 
-| Scrie    | cout  | 
+| Citeste  | cin   |
+| Scrie    | cout  |
 | Daca     | if    |
-| Altfel   | else  | 
+| Altfel   | else  |
 | CatTimp  | while |
 
 **Operatori:**
 
 | MLP  | C++          |
-|------|--------------|
+| ---- | ------------ |
 | +    | +            |
 | -    | -            |
-| *    | *            |
+| \*   | \*           |
 | /    | /            |
 | %    | %            |
 | Egal | ==           |
@@ -42,7 +42,7 @@
 **Separators**
 
 | MLP | C++ |
-|-----|-----|
+| --- | --- |
 | ;   | ;   |
 | ,   | ,   |
 | {   | {   |
@@ -54,7 +54,7 @@
 **Other symbols:**
 
 | MLP           | C++                                          |
-|---------------|----------------------------------------------|
+| ------------- | -------------------------------------------- |
 | Import        | #include<iostream> </b> using namespace std; |
 | End_Program   | return 0;                                    |
 | Start_Program | int main()                                   |
@@ -70,7 +70,7 @@
 **Tabela de codificare:**
 
 | Simbol        | Cod |
-|---------------|-----|
+| ------------- | --- |
 | ID            | 00  |
 | CONST         | 01  |
 | (             | 02  |
@@ -81,10 +81,10 @@
 | }             | 07  |
 | +             | 08  |
 | -             | 09  |
-| *             | 10  |
+| \*            | 10  |
 | /             | 11  |
 | %             | 12  |
-| ==            | 13  |
+| Egal          | 13  |
 | !=            | 14  |
 | <             | 15  |
 | <=            | 16  |
@@ -115,27 +115,27 @@
 <start_program> ::= 'Start_Program' '{'
 <end_program> ::= 'End_Program' ';' '}'
 
-<declarari> ::= <declarare> | <declarare> <declarari> 
+<declarari> ::= <declarare> | <declarare> <declarari>
 <declarare> ::= <tip> <lista_ID> ';'
-<lista_ID> ::= ID | ID ',' <lista_ID> 
+<lista_ID> ::= ID | ID ',' <lista_ID>
 <tip> ::= 'Intreg' | 'Real' | 'Structura'
 
-<lista_instr> ::= <instr> | <instr> <lista_instr>  
+<lista_instr> ::= <instr> | <instr> <lista_instr>
 <instr> ::= <atribuire> ';' | <citeste> ';' | <scrie> ';' | <daca> | <cat_timp>
 <atribuire> ::= ID 'atribuim' <exp>
 <citeste> ::= 'Citeste' <lista_id>
-<scrie> ::= 'Scrie' <lista_id> 
+<scrie> ::= 'Scrie' <lista_id>
 <daca> ::= 'Daca' '(' <exp> ')' '{'  <lista_instr> '}' | 'Daca' '(' <exp> ')' '{'  <lista_instr> '}' <altfel>
 <altfel> ::= 'Altfel' '{' <lista_instr> '}'
 <cat_timp> ::= 'CatTimp' '(' <exp> ')' '{' <lista_instr> '}'
 
-<exp> ::= <termen> | <termen> <termeni> 
+<exp> ::= <termen> | <termen> <termeni>
 <termen> ::= <factor> <factori> | <factor>
 <factor> ::= ID | CONST | '(' <exp> ')'
 <termeni> ::= <relational_logic> <termen> <termeni> | <relational_logic> <termen>
 <factori> ::= <aritmetic> <factor> <factori> | <aritmetic> <factor>
 <relational_logic> ::= 'Egal' | '!=' | '<' | '<=' | '>' | '>=' | 'si' | 'sau'
-<aritmetic> :: = '+' | '-' | '*' | '/' 
+<aritmetic> :: = '+' | '-' | '*' | '/'
 
 ID ::= <litera_mica> <continuare> | <litera_mica>
 <continuare> ::= <caractere> <continuare> | <caractere>
@@ -152,7 +152,7 @@ CONST ::= <cifra> <cifre> | <cifra> | <cifra> <cifre> '.' <cifra> <cifra>
 
 - calculeaza suma a n numere citite de la tastatura
 
-```text 
+```text
       Import
       Start_Program {
         Scrie "N = ";
@@ -171,7 +171,7 @@ CONST ::= <cifra> <cifre> | <cifra> | <cifra> <cifre> '.' <cifra> <cifra>
 
 **- determina cmmdc a 2 nr naturale**
 
-```text    
+```text
      Import
       Start_Program {
       Scrie "A = ";
@@ -191,7 +191,7 @@ CONST ::= <cifra> <cifre> | <cifra> | <cifra> <cifre> '.' <cifra> <cifra>
 
 **- calculeaza perimetrul si aria cercului de o raza data data**
 
-```text    
+```text
     Import
     Start_Program {
       Scrie "N = ";
@@ -226,7 +226,6 @@ CONST ::= <cifra> <cifre> | <cifra> | <cifra> <cifre> '.' <cifra> <cifra>
 1. tip de data double nu este definit in MLP
 2. lipseste Import fara este programul nu este valid (practic in c++ nu am avea nici iostream si std si nu ar rula
    programul)
-
 
 - Al doilea program contine doua erori conform MLP, dar care nu sunt erori in limbajul original. Se cere ca acesta sa
   fie compilat si
