@@ -61,9 +61,9 @@
 
 **Restrictii:**
 
-- ID: doar litere si incepe cu litera mica mereu, lungime maxim 250;
+- ID: doar litere si incepe cu litera mica mereu, lungime maxim 250, se permit cifire, nu se permit virguale sau underscoare, etc.;
 - Constante: intregi, maxim 9 cifre si reale maxim 2 zecimale;
-  Regex pentru ID: `[a-z][a-zA-Z0-9]{0,250}`
+  Regex pentru ID: `[a-z][a-zA-Z0-9]{0,249}`
   Regex pentru intregi: `[+-]?(0|[1-9][0-9]{0-8})`
   Regex pentru reale: `[+-]?(0|[1-9][0-9]{0-8})(\.[0-9]{1,2})`
 
@@ -109,43 +109,44 @@
 **BNF**
 
 ```text
-<program> ::= <import> <start_program> <declarari> <lista_instr> <end_program>
+<program> ::= <import><start_program><declarari><lista_instr><end_program> |
+<import><start_program><end_program>
 
 <import> ::= 'Import'
-<start_program> ::= 'Start_Program' '{'
-<end_program> ::= 'End_Program' ';' '}'
+<start_program> ::= 'Start_Program''{'
+<end_program> ::= 'End_Program'';''}'
 
-<declarari> ::= <declarare> | <declarare> <declarari>
-<declarare> ::= <tip> <lista_ID> ';'
-<lista_ID> ::= ID | ID ',' <lista_ID>
+<declarari> ::= <declarare> | <declarare><declarari>
+<declarare> ::= <tip><lista_ID>';'
+<lista_ID> ::= ID | ID','<lista_ID>
 <tip> ::= 'Intreg' | 'Real' | 'Structura'
 
-<lista_instr> ::= <instr> | <instr> <lista_instr>
-<instr> ::= <atribuire> ';' | <citeste> ';' | <scrie> ';' | <daca> | <cat_timp>
+<lista_instr> ::= <instr> | <instr><lista_instr>
+<instr> ::= <atribuire>';' | <citeste>';' | <scrie>';' | <daca> | <cat_timp>
 <atribuire> ::= ID 'atribuim' <exp>
 <citeste> ::= 'Citeste' <lista_id>
 <scrie> ::= 'Scrie' <lista_id>
-<daca> ::= 'Daca' '(' <exp> ')' '{'  <lista_instr> '}' | 'Daca' '(' <exp> ')' '{'  <lista_instr> '}' <altfel>
+<daca> ::= 'Daca''(' <exp> ')''{'<lista_instr>'}' | 'Daca''(' <exp> ')''{'<lista_instr>'}'<altfel>
 <altfel> ::= 'Altfel' '{' <lista_instr> '}'
 <cat_timp> ::= 'CatTimp' '(' <exp> ')' '{' <lista_instr> '}'
 
-<exp> ::= <termen> | <termen> <termeni>
-<termen> ::= <factor> <factori> | <factor>
-<factor> ::= ID | CONST | '(' <exp> ')'
-<termeni> ::= <relational_logic> <termen> <termeni> | <relational_logic> <termen>
-<factori> ::= <aritmetic> <factor> <factori> | <aritmetic> <factor>
+<exp> ::= <termen> | <termen><termeni>
+<termen> ::= <factor><factori> | <factor>
+<factor> ::= ID | CONST | '('<exp>')'
+<termeni> ::= <relational_logic><termen><termeni> | <relational_logic><termen>
+<factori> ::= <aritmetic><factor><factori> | <aritmetic><factor>
 <relational_logic> ::= 'Egal' | '!=' | '<' | '<=' | '>' | '>=' | 'si' | 'sau'
 <aritmetic> :: = '+' | '-' | '*' | '/'
 
-ID ::= <litera_mica> <continuare> | <litera_mica>
-<continuare> ::= <caractere> <continuare> | <caractere>
+ID ::= <litera_mica><continuare> | <litera_mica>
+<continuare> ::= <caractere><continuare> | <caractere>
 <caractere> ::=  <litera_mica> | <litera_mare> | <cifra>
 <litera_mica> ::= 'a' | ... | 'z'
 <litera_mare> ::= 'A' | ... | 'Z'
 <cifra> ::= '0' | ... | '9'
 
-CONST ::= <cifra> <cifre> | <cifra> | <cifra> <cifre> '.' <cifra> <cifra>
-<cifre> ::= <cifra> <cifre> | <cifra>
+CONST ::= <cifra><cifre> | <cifra> | <cifra><cifre> '.' <cifra><cifra>
+<cifre> ::= <cifra><cifre> | <cifra>
 ```
 
 **2 se cer textele sursa a 3 mini-programe**
