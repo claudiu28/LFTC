@@ -1,0 +1,14 @@
+Import
+Start_Program {
+     Scrie "N = ";
+     Intreg n, s, x;
+     Citeste n;
+     s atribuim 0;
+     CatTimp (n > 0) {
+        Citeste x;
+        s atribuim s + x;
+        n atribuim n - 1;
+     }
+     Scrie "Suma este: ", s;
+End_Program;
+}

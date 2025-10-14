@@ -1,0 +1,15 @@
+Import
+Start_Program {
+Scrie "A = ";
+Intreg a, b, r;
+Citeste a;
+Scrie "B = ";
+Citeste b;
+CatTimp (b != 0) {
+     r atribuim a % b;
+     a atribuim b;
+     b atribuim r;
+}
+Scrie "Cmmdc este: ", a;
+End_Program;
+}

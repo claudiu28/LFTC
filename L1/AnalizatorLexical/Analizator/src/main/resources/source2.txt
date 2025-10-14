@@ -1,0 +1,11 @@
+Import
+Start_Program {
+    Scrie "R = ";
+    Real p, a, r;
+    Citeste r;
+    a atribuim 3.14 * r * r;
+    p atribuim 2 * 3.14 * r;
+    Scrie "Aria este: ", a;
+    Scrie "Perimetrul este: ", p;
+End_Program;
+}

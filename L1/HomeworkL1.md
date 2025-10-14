@@ -30,7 +30,7 @@
 | \*   | \*           |
 | /    | /            |
 | %    | %            |
-| Egal | ==           |
+| egal | ==           |
 | !=   | !=           |
 | <    | <            |
 | <=   | <=           |
@@ -49,7 +49,6 @@
 | }   | }   |
 | (   | (   |
 | )   | )   |
-| "   | "   |
 
 **Other symbols:**
 
@@ -63,6 +62,7 @@
 
 - ID: doar litere si incepe cu litera mica mereu, lungime maxim 250, se permit cifire, nu se permit virguale sau underscoare, etc.;
 - Constante: intregi, maxim 9 cifre si reale maxim 2 zecimale;
+  Regex pentru text: `"[^"]*"`
   Regex pentru ID: `[a-z][a-zA-Z0-9]{0,249}`
   Regex pentru intregi: `[+-]?(0|[1-9][0-9]{0-8})`
   Regex pentru reale: `[+-]?(0|[1-9][0-9]{0-8})(\.[0-9]{1,2})`
@@ -84,14 +84,14 @@
 | \*            | 10  |
 | /             | 11  |
 | %             | 12  |
-| Egal          | 13  |
+| egal          | 13  |
 | !=            | 14  |
 | <             | 15  |
 | <=            | 16  |
 | \>            | 17  |
 | >=            | 18  |
-| Si            | 19  |
-| Sau           | 20  |
+| si            | 19  |
+| sau           | 20  |
 | atribuim      | 21  |
 | Intreg        | 22  |
 | Real          | 23  |
@@ -104,7 +104,6 @@
 | Import        | 30  |
 | Start_Program | 31  |
 | End_Program   | 32  |
-| "             | 33  |
 
 **BNF**
 
@@ -157,7 +156,7 @@ CONST ::= <cifra><cifre> | <cifra> | <cifra><cifre> '.' <cifra><cifra>
       Import
       Start_Program {
         Scrie "N = ";
-        Intreg n, s;
+        Intreg n, s, x;
         Citeste n;
         s atribuim 0;
         CatTimp (n > 0) {
